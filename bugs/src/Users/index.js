@@ -3,14 +3,16 @@ import NewUser from "./NewUser";
 import UserList from "./UserList";
 import bugsAPI from "../bugsAPI";
 
+const emptyUser = {
+  fname: "",
+  lname: "",
+  email: ""
+};
+
 export default function Users() {
   const [users, setUsers] = useState([]);
   const [createMode, setCreateMode] = useState(0);
-  const [edittedUser, setEdittedUser] = useState({
-    fname: "",
-    lname: "",
-    email: ""
-  });
+  const [edittedUser, setEdittedUser] = useState(emptyUser);
 
   useEffect(() => {
     updateUsers();
@@ -25,6 +27,12 @@ export default function Users() {
   const onDeleteClick = id => {
     bugsAPI.deleteUser(id).then(res => {
       updateUsers();
+    });
+    setCreateMode(0);
+    setEdittedUser({
+      fname: "",
+      lname: "",
+      email: ""
     });
   };
 
@@ -42,6 +50,7 @@ export default function Users() {
         setEdittedUser={setCreateMode}
         user={edittedUser}
       />
+      <div className="pb-4" />
       <UserList
         users={users}
         onDeleteClick={d => onDeleteClick(d)}

@@ -90,6 +90,7 @@ export default function NewUser({
       </Form>
       {mode === 0 ? (
         <Button
+          className="px-2"
           disabled={disabledButton}
           variant="secondary"
           onClick={() => handleCreateUser()}
@@ -99,13 +100,14 @@ export default function NewUser({
       ) : (
         <>
           <Button
+            className="mr-3"
             disabled={disabledButton}
             variant="secondary"
             onClick={() => handleEditUser()}
           >
             Edit
           </Button>
-          <Button variant="secondary" onClick={() => cancelEditUser()}>
+          <Button   className="px-2" variant="secondary" onClick={() => cancelEditUser()}>
             Cancel
           </Button>
         </>
